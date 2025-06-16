@@ -1,10 +1,10 @@
 <div
-  class="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 h-full flex flex-col"
+  class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300 h-full flex flex-col hover:shadow-xl"
 >
   @if(post.media) { @if (post.media.type.startsWith('video')) {
   <video
     [src]="post.media.url"
-    class="w-full h-48 object-cover"
+    class="w-full h-96 object-cover"
     controls
     muted
   ></video>
@@ -12,11 +12,22 @@
   <img
     [src]="post.media.url"
     [alt]="post.title"
-    class="w-full h-48 object-cover"
+    class="w-full h-96 object-cover"
   />} }
 
   <div class="p-6 flex flex-col flex-grow">
-    <div class="mb-4">
+    <div class="flex">
+      <img class="w-10 h-10 rounded-full" [src]="post.author.avatarUrl" />
+      <p class="text-gray-700 mx-2 my-2 inline-block">
+        <a
+          [routerLink]="['/user', post.author.userId]"
+          class="block font-semibold hover:underline"
+          >{{ post.author.displayName }}</a
+        >
+      </p>
+    </div>
+
+    <div class="my-3">
       <span class="text-sm text-gray-500">{{
         post.publishedAt | friendlyDate
       }}</span>
@@ -30,17 +41,8 @@
     <p class="text-gray-600">{{ post.content }}</p>
     }
 
-    <p class="text-gray-600 my-4">
-      Por:
-      <a
-        [routerLink]="['/user', post.author.userId]"
-        class="font-semibold hover:underline"
-        >{{ post.author.displayName }}</a
-      >
-    </p>
-
     <div
-      class="flex justify-between text-sm text-gray-500 border-t pt-4 mt-auto"
+      class="flex justify-around text-sm text-gray-500 border-t mt-6 pt-5 mt-auto"
     >
       <span>👁️ {{ post.stats.viewsCount }}</span>
       <span>❤️ {{ post.stats.likesCount }}</span>
