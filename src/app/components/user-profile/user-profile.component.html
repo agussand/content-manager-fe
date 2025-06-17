@@ -1,0 +1,62 @@
+<div class="container mx-auto p-4 md:p-8">
+  @if(user$ | async; as user) { @if(user) {
+  <div class="bg-white rounded-lg shadow-xl p-8">
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+      <img
+        [src]="user.profile.avatarUrl"
+        alt="Avatar de {{ user.profile.firstName }}"
+        class="w-32 h-32 rounded-full border-4 border-blue-500"
+      />
+      <div class="text-center md:text-left">
+        <h1 class="text-4xl font-bold">
+          {{ user.profile.firstName }} {{ user.profile.lastName }}
+        </h1>
+        <p class="text-gray-500 text-lg">{{ user.username }}</p>
+        <p class="mt-4 text-gray-700 max-w-xl">{{ user.profile.bio }}</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 border-t pt-8">
+      <div class="text-center">
+        <p class="text-2xl font-bold">{{ user.stats.postsCount }}</p>
+        <p class="text-gray-500">Publicaciones</p>
+      </div>
+      <div class="text-center">
+        <p class="text-2xl font-bold">{{ user.stats.followersCount }}</p>
+        <p class="text-gray-500">Seguidores</p>
+      </div>
+      <div class="text-center">
+        <p class="text-2xl font-bold">{{ user.stats.followingCount }}</p>
+        <p class="text-gray-500">Siguiendo</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 border-t pt-8">
+      <div>
+        <h3 class="text-xl font-semibold mb-4">Intereses</h3>
+        <div class="flex flex-wrap gap-2">
+          @for(interest of user.interests; track interest) {
+          <span
+            class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm"
+            >{{ interest }}</span
+          >
+          }
+        </div>
+      </div>
+      <div>
+        <h3 class="text-xl font-semibold mb-4">Redes Sociales</h3>
+        @for(link of user.socialLinks | keyvalue; track link.key) {
+        <p>
+          <span class="font-bold">{{ link.key }}:</span>
+          <a href="#" class="text-blue-600 hover:underline">{{ link.value }}</a>
+        </p>
+        }
+      </div>
+    </div>
+  </div>
+  } } @else if (error) {
+  <p class="text-center text-red-500">{{ error }}</p>
+  } @else {
+  <p class="text-center text-gray-500">Cargando perfil...</p>
+  }
+</div>
