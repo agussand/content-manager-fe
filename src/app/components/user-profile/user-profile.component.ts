@@ -14,7 +14,7 @@ import { CommonModule, KeyValuePipe } from '@angular/common';
 })
 export class UserProfileComponent {
   private route = inject(ActivatedRoute);
-  private userService = inject(UserService); // Asegúrate de crear este servicio
+  private userService = inject(UserService); 
 
   public user$!: Observable<User | null>;
   public error: string | null = null;
