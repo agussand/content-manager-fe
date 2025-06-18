@@ -2,7 +2,7 @@ import { Author } from './user.model';
 
 export interface Media {
   url: string;
-  type: 'img' | 'video/mp4' | string; // Permitimos otros tipos de video
+  type: 'img' | 'video/mp4' | string;
   alt: string | null;
   duration?: number;
 }
@@ -14,15 +14,14 @@ export interface PostStats {
 }
 
 export interface Post {
-  id: string; // Cambiado de _id a id
+  id: string;
   title: string;
   slug: string;
   content: string;
-  author: Author; // Usamos la interfaz Author
+  author: Author;
   tags: string[];
   category: string;
   media: Media;
   stats: PostStats;
-  publishedAt: string; // o Date
-  // No necesitamos todos los campos, solo los que visualizaremos
+  publishedAt: string;
 }

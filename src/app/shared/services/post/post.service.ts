@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PaginatedResponse } from '../../models/paginado';
 import { Post } from '../../models/post.model';
+import { Comment } from '../../models/comment.model';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ export class PostService {
   }
 
   getPostById(id: string): Observable<Post> {
-    return this.http.get<Post>(`${this.apiUrl}/posts/${id}`);
+    return this.http.get<Post>(`${this.apiUrl}/${id}`);
   }
 
   getCommentsForPost(
@@ -37,7 +38,7 @@ export class PostService {
       .set('page', page.toString())
       .set('size', size.toString());
     return this.http.get<PaginatedResponse<Comment>>(
-      `${this.apiUrl}/posts/${postId}/comments`,
+      `${this.apiUrl}/${postId}/comments`,
       { params }
     );
   }
