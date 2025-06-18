@@ -45,7 +45,6 @@ export class PostComponent implements OnInit {
         ), // Pedimos de a 5 comentarios
         catchError((err) => {
           console.error('Error al cargar comentarios:', err);
-          // Puedes manejar el error de comentarios de forma separada si quieres
           return of(null);
         })
       );
