@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
+  AnnualContentReportDTO,
   DashboardDTO,
+  PostEngagementDTO,
   TopCommentedPostDTO,
   UserPostCountDTO,
 } from '../models/report.model';
@@ -31,5 +33,15 @@ export class ReportService {
   // Reporte 5: Dashboard general
   getGeneralDashboard(): Observable<DashboardDTO> {
     return this.http.get<DashboardDTO>(`${this.apiUrl}/dashboard`);
+  }
+
+  getAnnualContentReport(): Observable<AnnualContentReportDTO> {
+    return this.http.get<AnnualContentReportDTO>(
+      `${this.apiUrl}/monthly-average`
+    );
+  }
+
+  getPostEngagementData(): Observable<PostEngagementDTO[]> {
+    return this.http.get<PostEngagementDTO[]>(`${this.apiUrl}/post-engagement`);
   }
 }

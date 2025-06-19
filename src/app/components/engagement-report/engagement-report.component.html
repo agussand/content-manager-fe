@@ -1,0 +1,38 @@
+@if (engagementChartData$ | async; as chartData) {
+<div class="bg-white p-6 rounded-lg shadow-md">
+  <header class="mb-6 border-b pb-4">
+    <h3 class="text-xl font-bold text-gray-900">Análisis de Interacción</h3>
+    <p class="text-sm text-gray-500">
+      Correlación entre "Me Gusta" y Comentarios por publicación.
+    </p>
+  </header>
+
+  @if (chartData && chartData.length > 0 && chartData[0].series &&
+  chartData[0].series.length > 0) {
+  <div class="w-full h-96">
+    <ngx-charts-bubble-chart
+      [results]="chartData"
+      [xAxis]="true"
+      [yAxis]="true"
+      [legend]="false"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [scheme]="colorScheme"
+      [minRadius]="3"
+      [maxRadius]="8"
+    >
+    </ngx-charts-bubble-chart>
+  </div>
+  } @else {
+  <p class="text-center text-gray-500 py-10">
+    No hay suficientes datos para mostrar el gráfico.
+  </p>
+  }
+</div>
+} @else {
+<div class="bg-white p-6 rounded-lg shadow-md text-center">
+  <p class="text-gray-500">Cargando reporte de interacción...</p>
+</div>
+}

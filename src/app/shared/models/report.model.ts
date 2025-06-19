@@ -26,3 +26,39 @@ export interface DashboardData {
   topPosters: UserPostCountDTO[];
   topCommentedPosts: TopCommentedPostDTO[];
 }
+
+export interface ChartData {
+  name: string;
+  value: number;
+}
+
+export interface MonthlyStat {
+  period: string;
+  postsCount: number;
+  uniqueAuthors: number;
+  totalViews: number;
+}
+
+export interface PostEngagementDTO {
+  title: string;
+  slug: string;
+  likes: number;
+  comments: number;
+}
+
+export interface BubbleChartData {
+  name: string;
+  series: {
+    name: string; // Título del post
+    x: number; // Eje X (Likes)
+    y: number; // Eje Y (Comentarios)
+    r: number; // Radio de la burbuja (usaremos un valor fijo)
+  }[];
+}
+
+// Esta es la interfaz para la respuesta completa de la API
+export interface AnnualContentReportDTO {
+  monthlyStats: MonthlyStat[];
+  avgPostsPerMonth: number;
+  avgAuthorsPerMonth: number;
+}

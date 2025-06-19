@@ -4,11 +4,18 @@ import { RouterModule } from '@angular/router';
 import { ReportService } from '../../shared/services/report.service';
 import { catchError, forkJoin, Observable, of } from 'rxjs';
 import { DashboardData } from '../../shared/models/report.model';
+import { AnnualReportComponent } from '../annual-report/annual-report.component';
+import { EngagementReportComponent } from '../engagement-report/engagement-report.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    AnnualReportComponent,
+    EngagementReportComponent,
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
